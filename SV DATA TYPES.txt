@@ -1,0 +1,79 @@
+SV DATA TYPES:
+
+module top;
+
+  //==========================
+  // 2-State Data Types
+  //==========================
+
+  bit        b;
+  byte       by;
+  shortint   si;
+  int        i;
+  longint    li;
+
+  //==========================
+  // 4-State Data Types
+  //==========================
+
+  logic      l;
+  reg        r;
+  integer    in;
+  time       t;
+
+  initial begin
+
+   
+
+    b  = 1;
+    by = 8'd100;
+    si = 16'd25000;
+    i  = 32'd123456;
+    li = 64'd1234567890123;
+
+   
+
+    l  = 1'bx;
+    r  = 1'bz;
+    in = -500;
+    t  = $time;
+
+    
+
+    $display("2-State Data Types");
+    $display("bit      = %0b", b);
+    $display("byte     = %0d", by);
+    $display("shortint = %0d", si);
+    $display("int      = %0d", i);
+    $display("longint  = %0d", li);
+
+    $display("");
+
+    $display("4-State Data Types");
+    $display("logic    = %0b", l);
+    $display("reg      = %0b", r);
+    $display("integer  = %0d", in);
+    $display("time     = %0t", t);
+
+  end
+
+endmodule
+
+
+output:
+
+# KERNEL: ASDB file was created in location /home/runner/dataset.asdb
+# KERNEL: 2-State Data Types
+# KERNEL: bit      = 1
+# KERNEL: byte     = 100
+# KERNEL: shortint = 25000
+# KERNEL: int      = 123456
+# KERNEL: longint  = 1234567890123
+# KERNEL: 
+# KERNEL: 4-State Data Types
+# KERNEL: logic    = x
+# KERNEL: reg      = z
+# KERNEL: integer  = -500
+# KERNEL: time     = 0
+# KERNEL: Simulation has finished. There are no more test vectors to simulate.
+# VSIM: Simulation has finished.
