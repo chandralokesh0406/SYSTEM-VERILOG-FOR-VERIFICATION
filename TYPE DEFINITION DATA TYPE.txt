@@ -1,0 +1,65 @@
+TYPE DEFINITION:   ---> type definition it is user defined data type . it allows a user to create their own name to the type definition...
+--> we can create any number of names using typedef.
+--> typedef can be declared inside or outside the module
+--> we can define any data type using typedef.
+--> typedef needs to create a handle.
+
+typedef enum{green,red,orange,blue} colour;
+
+module tb;
+  
+  initial
+    begin
+      
+      colour clr;
+      
+      colour clr2;
+      
+      clr = clr.first();
+      
+      $display("clr = %0d , name of the colour = %0s ", clr , clr.name);
+      
+      clr = clr.next();
+      
+      $display("clr = %0d , name of the colour = %0s ", clr , clr.name);
+      
+      clr = clr.last();
+      
+      $display("clr = %0d , name of the colour = %0s ", clr , clr.name);
+      
+      clr = clr.prev();
+      
+      $display("clr = %0d , name of the colour = %0s ", clr , clr.name);
+      
+      clr2 = clr2.first();
+      
+      $display("clr2 = %0d , name of the colour = %0s ", clr2 , clr2.name);
+      
+      clr2 = clr2.next();
+      
+      $display("clr2 = %0d , name of the colour = %0s ", clr2 , clr2.name);
+      
+      clr2 = clr2.last();
+      
+      $display("clr2 = %0d , name of the colour = %0s ", clr2 , clr2.name);
+      
+      clr2 = clr2.prev();
+      
+      $display("clr2 = %0d , name of the colour = %0s ", clr2 , clr2.name);
+      
+    end
+endmodule
+
+OUTPUT:
+
+# KERNEL: ASDB file was created in location /home/runner/dataset.asdb
+# KERNEL: clr = 0 , name of the colour = green 
+# KERNEL: clr = 1 , name of the colour = red 
+# KERNEL: clr = 3 , name of the colour = blue 
+# KERNEL: clr = 2 , name of the colour = orange 
+# KERNEL: clr2 = 0 , name of the colour = green 
+# KERNEL: clr2 = 1 , name of the colour = red 
+# KERNEL: clr2 = 3 , name of the colour = blue 
+# KERNEL: clr2 = 2 , name of the colour = orange 
+# KERNEL: Simulation has finished. There are no more test vectors to simulate.
+# VSIM: Simulation has finished.
