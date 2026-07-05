@@ -1,0 +1,73 @@
+ENUM DATA TYPE:
+
+module tb;
+  
+  enum {green,white,blue,red} clr;
+  
+  initial
+    begin
+      
+      clr = clr.first();
+      
+      $display("clr = %0d , name of the colour = %0s ", clr , clr.name);
+      
+      clr = clr.next();
+      
+      $display("clr = %0d , name of the colour = %0s ", clr , clr.name);
+      
+      clr = clr.last();
+      
+      $display("clr = %0d , name of the colour = %0s ", clr , clr.name);
+      
+      clr = clr.prev();
+      
+      $display("clr = %0d , name of the colour = %0s ", clr , clr.name);
+      
+    end
+endmodule
+
+OUTPUT:
+
+# Allocation: Simulator allocated 4537 kB (elbread=427 elab2=4104 kernel=6 sdf=0)
+# KERNEL: ASDB file was created in location /home/runner/dataset.asdb
+# KERNEL: clr = 0 , name of the colour = green 
+# KERNEL: clr = 1 , name of the colour = white 
+# KERNEL: clr = 3 , name of the colour = red 
+# KERNEL: clr = 2 , name of the colour = blue 
+# KERNEL: Simulation has finished. There are no more test vectors to simulate.
+# VSIM: Simulation has finished.
+
+
+*** ENUM IMPROVES CODE READIBILITY AND TYPE SAFETY:
+
+CODE REDDIBILITY --> EASY TO UNDERSTAND..
+TYPE SAFETY  ----> PREVENTS ACCIDENTAL MISTAKES.. 
+
+EXAMPLE FOR TYPE SAFETY:
+module top;
+
+  typedef enum {RED, GREEN, BLUE} color_t;
+  typedef enum {IDLE, READ, WRITE} state_t;
+
+  color_t color;
+  state_t state;
+
+  initial begin
+
+    color = RED;      // ✔ Correct
+    state = READ;     // ✔ Correct
+
+    state = GREEN;    // ❌ Type mismatch
+    color = WRITE;    // ❌ Type mismatch
+
+  end
+
+endmodule
+
+output:
+ALIB: Library "work" attached.
+work = ./work/work.lib
+ERROR VCP2694 "Assignment to enum variable from expression of different type. Use ""-err VCP2694 W1"" to suppress this error." "testbench.sv" 14  11
+ERROR VCP2694 "Assignment to enum variable from expression of different type. Use ""-err VCP2694 W1"" to suppress this error." "testbench.sv" 15  11
+FAILURE "Compile failure 2 Errors 0 Warnings  Analysis time: 0[s]."
+
