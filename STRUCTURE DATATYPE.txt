@@ -1,0 +1,86 @@
+STRUCTURE DATATYPE:
+
+-->Structure is a user defined data type . it is the collection of elements of different data types is called structure.
+--> the memory is allocated in the structure in compile time only.
+--> it is represented eith tik(') symbol.
+--> we cannot be declare variables and methods in the structure...
+
+typedef struct{int id; bit [31:0]salary; string name;} employee;
+
+module tb;
+  
+  initial
+    begin
+      
+      employee emp1,emp2,emp3;
+      
+      emp1  = '{ 'd5555 , 'd40000 , "chandralokesh"};
+      
+      $display("emp1 id = %0d , emp1 salary = %0d , emp1 name = %0s " , emp1.id , emp1.salary , emp1.name);
+      
+      emp2 =  '{ 'd4553 , 'd50000 , "vinaykumar"};
+      
+      $display("emp2 id = %0d , emp2 salary = %0d , emp2 name = %0s " , emp2.id , emp2.salary , emp2.name);
+      
+      emp3 =  '{ 'd6534 , 'd60000 , "viratkohli"};
+      
+      $display("emp3 id = %0d , emp3 salary = %0d , emp3 name = %0s " , emp3.id , emp3.salary , emp3.name);
+      
+    end
+endmodule
+      
+      
+
+output:
+
+# Allocation: Simulator allocated 4538 kB (elbread=427 elab2=4104 kernel=6 sdf=0)
+# KERNEL: ASDB file was created in location /home/runner/dataset.asdb
+# KERNEL: emp1 id = 5555 , emp1 salary = 40000 , emp1 name = chandralokesh 
+# KERNEL: emp2 id = 4553 , emp2 salary = 50000 , emp2 name = vinaykumar 
+# KERNEL: emp3 id = 6534 , emp3 salary = 60000 , emp3 name = viratkohli 
+# KERNEL: Simulation has finished. There are no more test vectors to simulate.
+# VSIM: Simulation has finished.
+
+THEY ARE TWO TYPES OF STRUCTURES 
+1) PACKED STRUCTURE
+2) UNPACKED STRUCTURE
+
+PACKED STRUCTURE:
+
+typedef struct packed{int id; bit [31:0]salary;} employee;
+
+module tb;
+  
+  initial
+    begin
+      
+      employee emp1,emp2,emp3;
+      
+      emp1  = '{ 'd5555 , 'd40000 };
+      
+      $display("emp1 id = %0d , emp1 salary = %0d  " , emp1.id , emp1.salary);
+      
+      emp2 =  '{ 'd4553 , 'd50000};
+      
+      $display("emp2 id = %0d , emp2 salary = %0d  " , emp2.id , emp2.salary);
+      
+      emp3 =  '{ 'd6534 , 'd60000};
+      
+      $display("emp3 id = %0d , emp3 salary = %0d  " , emp3.id , emp3.salary);
+      
+    end
+endmodule
+      
+      
+output:
+
+# KERNEL: Kernel process initialization done.
+# Allocation: Simulator allocated 4537 kB (elbread=427 elab2=4104 kernel=6 sdf=0)
+# KERNEL: ASDB file was created in location /home/runner/dataset.asdb
+# KERNEL: emp1 id = 5555 , emp1 salary = 40000  
+# KERNEL: emp2 id = 4553 , emp2 salary = 50000  
+# KERNEL: emp3 id = 6534 , emp3 salary = 60000  
+# KERNEL: Simulation has finished. There are no more test vectors to simulate.
+# VSIM: Simulation has finished.
+
+---> BY DEFAULT STRUCTURE IS UNPAKCED IN SYSTEM VERILOG...
