@@ -1,0 +1,83 @@
+
+UNION DATA TYPE:
+
+UNION IS USERDEFINED DATATYPE which is same as structure collection of elements of different datamemebers but all the datamembers shares the same memeory location . unlike structure datamembers shares different memory locations..
+--> by default system Verilog unions are unpacked..
+
+They are two types of unions 
+
+1) packed union 
+2) unpacked union
+
+
+SLIGHT DIFFERENCE BETWEEN PACKED AND UNPACKED UNIONS ARE IN PACKED UNIONS THE SIZE OF THE DATA MEMBERS MUST BE EQUAL WHEN IT COMES TO UNPACKED UNION THE DATA MEMBERS DO NOT HAVE TO BE THE SAME BIT WIDTH . IN UNION CONCEPT THE DYNAMIC DATA TYPES SUCH AS STRINGS , ARRAYS , QUEUES ARE NOT ALLOWED TO DECLARE..
+
+UNPACKED UNION:
+
+typedef union{
+  int id;
+  bit [63:0]salary;
+} employee;
+
+module tb;
+  
+  initial
+    begin
+      
+      employee emp1,emp2;
+      
+      emp1.id = 2345;
+      
+      $display("id = %0d  , salary = %0d ", emp1.id , emp1.salary);
+      
+      emp2.salary = 40000;
+      
+      $display("id = %0d , salary  = %0d ", emp2.id , emp2.salary);
+      
+    end
+endmodule
+
+output:
+
+# KERNEL: ASDB file was created in location /home/runner/dataset.asdb
+# KERNEL: id = 2345  , salary = 2345 
+# KERNEL: id = 40000 , salary  = 40000 
+# KERNEL: Simulation has finished. There are no more test vectors to simulate.
+# VSIM: Simulation has finished.
+
+
+PACKED UNION: --> the size of the datamembers are equal...
+
+typedef union packed{
+  int id;
+  bit [31:0]salary;
+} employee;
+
+module tb;
+  
+  initial
+    begin
+      
+      employee emp1,emp2;
+      
+      emp1.id = 2345;
+      
+      
+      $display("id = %0d  , salary = %0d ", emp1.id , emp1.salary );
+      
+      emp2.salary = 40000;
+      
+      $display("id = %0d , salary  = %0d ", emp2.id , emp2.salary );
+      
+    end
+endmodule
+
+output:
+Loading snapshot worklib.tb:sv .................... Done
+xcelium> source /xcelium25.03/tools/xcelium/files/xmsimrc
+xcelium> run
+id = 2345  , salary = 2345 
+id = 40000 , salary  = 40000 
+xmsim: *W,RNQUIE: Simulation is complete.
+xcelium> exit
+
