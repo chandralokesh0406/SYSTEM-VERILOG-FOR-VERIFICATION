@@ -152,3 +152,284 @@ data
 +---------+
 
 Separate memory location for each element
+
+
+SYSTEM VERILOG ARRAYS:
+
+STATIC ARRAY:
+
+-->Static array is the fixed size array.
+-->the memory is allocated in compile time
+-->the size cannot be increased or decreased
+-->the size is fixed through out the simulation
+-->it have both packed and unpacked arrays. 
+
+module top;
+  
+  bit [3:0]data;
+  
+  bit data_1[7:0];
+  
+  initial
+    begin
+      
+      data = 'd14;
+      
+      data_1 = '{1,0,0,1,1,0,1,0};
+      
+      $display("data = %0d ", data);
+      
+      foreach(data_1[i]) begin
+        $display("data_1[%0d] = %0b ", i, data_1[i]);
+      end
+    end
+endmodule
+
+      
+DYNAMIC ARRAY:
+
+--> dynamic array it is not fixed size array like static array
+--> the memory is allocated in run time
+--> the size can increased or decreased in run time
+--> it have only unpacked arrays
+--> built in methods: 1) new[] to change size of the array
+--> Built in methods that we have 1) size()
+                                  2) delete()
+
+module top;
+  
+  bit [5:0]data_1[];
+  
+  initial
+    begin
+      
+      data_1 = new[5];
+      
+      data_1 = '{10,20,30,40,50};
+      
+      
+      $display(" before delete :" );
+      
+      $display(" size = %0d " ,data_1.size());
+      
+      foreach(data_1[i]) 
+        $display("data_1[%0d] = %0d ", i , data_1[i]);
+      
+      $display( " after delete : ");
+      
+      data_1.delete();
+      
+      
+      $display(" size = %0d " , data_1.size());
+      
+    end
+endmodule
+               
+               
+output:
+
+# KERNEL:  before delete :
+# KERNEL:  size = 5 
+# KERNEL: data_1[0] = 10 
+# KERNEL: data_1[1] = 20 
+# KERNEL: data_1[2] = 30 
+# KERNEL: data_1[3] = 40 
+# KERNEL: data_1[4] = 50 
+# KERNEL:  after delete : 
+# KERNEL:  size = 0 
+
+
+ASSOCIATIVE ARRAY:
+
+--> associative array is used for the large memory behaviour
+--> it has huge memory 
+--> the memory is allocated based on the elements
+--> The elements are accessed using keys (indices), which may be continuous or non-continuous . but if you want to mention the elements in continuous indices we need to declare the sequential indices otherwise they store in non sequential manner
+--> it is not possible to access each and every memory location in the associative array . we can access only the memory location which the element stored..
+--> it requires less space to store the elements
+
+BIULT IN METHODS:
+--> first()
+--> last()
+--> next()
+--> previous()
+--> delete()
+--> exsits()
+
+
+module top;
+  
+  reg [7:0] mem[int];
+  
+  int index;
+  
+  initial
+    begin
+      
+      
+      $display( " arr = %0d " , mem.num());
+      
+      mem[5] = 100;
+      mem[10] = 110;
+      mem[16] = 123;
+      mem[24] = 50;
+      
+      $display(" arr = %0d " , mem.num());
+      
+      
+      foreach(mem[index])
+        
+        $display(" mem[%0d] = %0d ", index , mem[index]);
+      
+      if(mem.first(index))
+      
+      $display(" mem[%0d] = %0d " , index , mem[index]);
+      
+      if(mem.next(index))
+      
+      $display(" mem[%0d] = %0d " , index , mem[index]);
+      
+      if(mem.last(index))
+      
+      $display(" mem[%0d] = %0d " , index , mem[index]);
+      
+      if(mem.prev(index))
+      
+      $display(" mem[%0d] = %0d " , index , mem[index]);
+      
+      
+      if( mem.exists(23))
+        $display("index is eexists right ");
+      else
+        $display(" index is not exists ");
+      
+      mem.delete(16);
+      
+      foreach(mem[index])
+        $display(" mem[%0d] = %0d " , index , mem[index]);
+      
+    end
+endmodule
+      
+      
+output:
+
+# Allocation: Simulator allocated 4585 kB (elbread=451 elab2=4123 kernel=11 sdf=0)
+# KERNEL: ASDB file was created in location /home/runner/dataset.asdb
+# KERNEL:  arr = 0 
+# KERNEL:  arr = 4 
+# KERNEL:  mem[5] = 100 
+# KERNEL:  mem[10] = 110 
+# KERNEL:  mem[16] = 123 
+# KERNEL:  mem[24] = 50 
+# KERNEL:  mem[5] = 100 
+# KERNEL:  mem[10] = 110 
+# KERNEL:  mem[24] = 50 
+# KERNEL:  mem[16] = 123 
+# KERNEL:  index is not exists 
+# KERNEL:  mem[5] = 100 
+# KERNEL:  mem[10] = 110 
+# KERNEL:  mem[24] = 50 
+# KERNEL: Simulation has finished. There are no more test vectors to simulate.
+# VSIM: Simulation has finished.
+
+QUEUE: 
+-->Queue supports adding and removing of element in any where.
+-->it has variable in sizing.
+-->it has flexible data structure.
+--> it is represented with [$];
+  ex: int queue[$];
+--> they are two types of the queues:
+Bounded queue --> size is mentioned
+un bounded queue --> size is not mentioned
+BUILT IN METHODS IN QUEUE:
+push_front()
+push_back()
+pop_front()
+pop_back()
+insert()
+delete()
+size()
+
+EXAMPLE PROGRAM:
+
+module top;
+  
+  int queue[$];
+  
+  int i;
+  
+  initial
+    begin
+      
+      $display("size of the queue  = %0d ", queue.size());
+      
+      queue = '{20,30,40,50,60};
+      
+      $display("size of the queue = %0d ", queue.size());
+      
+      foreach(queue[i])
+        $display(" queue[%0d] = %0d " , i , queue[i]);
+      
+      queue.push_front(2000);
+      $display(" elements = %0p ", queue);
+      $display("size of the queue = %0d " , queue.size());
+      
+      queue.push_back(3000);
+      $display(" elements = %0p " , queue);
+      $display(" size of the queue = %0d ", queue.size());
+      
+      queue.pop_front();
+      $display(" elements = %0p ", queue);
+      $display( " size of the queue = %0d " , queue.size());
+      
+      queue.pop_back();
+      $display(" elements  = %0p " , queue);
+      $display("  size of the queue = %0d " , queue.size());
+      
+      queue.insert(1,500);
+      $display(" elements = %0p " , queue);
+      $display("  size of the queue = %0d ", queue.size());
+      
+      queue.insert(3,700);
+      $display(" elements = %0p ", queue);
+      $display("  size of the queeu = %0d " , queue.size());
+      
+      queue.delete(1);
+      $display(" elements = %0p ", queue);
+      $display(" size of the queue = %0d " , queue.size());
+      
+      queue.delete(3);
+      $display(" elements = %0p ", queue);
+      $display("  size of the queue = %0d ", queue.size());
+      
+    end
+endmodule
+      
+output:
+# KERNEL: ASDB file was created in location /home/runner/dataset.asdb
+# KERNEL: size of the queue  = 0 
+# KERNEL: size of the queue = 5 
+# KERNEL:  queue[0] = 20 
+# KERNEL:  queue[1] = 30 
+# KERNEL:  queue[2] = 40 
+# KERNEL:  queue[3] = 50 
+# KERNEL:  queue[4] = 60 
+# KERNEL:  elements = 2000 20 30 40 50 60 
+# KERNEL: size of the queue = 6 
+# KERNEL:  elements = 2000 20 30 40 50 60 3000 
+# KERNEL:  size of the queue = 7 
+# KERNEL:  elements = 20 30 40 50 60 3000 
+# KERNEL:  size of the queue = 6 
+# KERNEL:  elements  = 20 30 40 50 60 
+# KERNEL:   size of the queue = 5 
+# KERNEL:  elements = 20 500 30 40 50 60 
+# KERNEL:   size of the queue = 6 
+# KERNEL:  elements = 20 500 30 700 40 50 60 
+# KERNEL:   size of the queeu = 7 
+# KERNEL:  elements = 20 30 700 40 50 60 
+# KERNEL:  size of the queue = 6 
+# KERNEL:  elements = 20 30 700 50 60 
+# KERNEL:   size of the queue = 5 
+# KERNEL: Simulation has finished. There are no more test vectors to simulate.
+# VSIM: Simulation has finished.
