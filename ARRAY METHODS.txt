@@ -1,0 +1,312 @@
+NEED OF THE ARRAY METHODS : 
+Array methods are built-in functions that simplify common array operations such as sorting, reversing, shuffling, and computing sums or minimum/maximum values. They reduce code complexity, improve readability, minimize programming errors, and eliminate the need to implement common algorithms manually.
+
+1) array oldering methods.
+2) array reduction methods.
+
+
+
+ARRAY OLDERING METHODS: ARRAY OLDERING METHODS ARE USED TO REARRANGE THE ELEMENTS OF AN ARRAY..
+
+
+REVERSE:  Reverse the order of the elements in the array...
+module top;
+  
+  int data[] = '{10,20,30,40,50};
+  
+  initial
+    begin
+      
+      
+      data.reverse();
+      
+      foreach(data[i])
+        $display(" data[%0d] = %0d " , i , data[i]);
+      
+    end
+endmodule
+
+Sort():  Sorting the elements in the ascending order.
+
+module top;
+  
+  int data[] = '{10,20,30,40,50};
+  
+  initial
+    begin
+      
+      
+      data.sort();
+      
+      foreach(data[i])
+        $display(" data[%0d] = %0d " , i , data[i]);
+      
+    end
+endmodule
+
+output:
+
+# Allocation: Simulator allocated 4568 kB (elbread=451 elab2=4109 kernel=7 sdf=0)
+# KERNEL: ASDB file was created in location /home/runner/dataset.asdb
+# KERNEL:  data[0] = 10 
+# KERNEL:  data[1] = 20 
+# KERNEL:  data[2] = 30 
+# KERNEL:  data[3] = 40 
+# KERNEL:  data[4] = 50 
+# KERNEL: Simulation has finished. There are no more test vectors to simulate.
+# VSIM: Simulation has finished.
+
+Rsort(): Sorting the elements in the descending order is called rsort().
+
+module top;
+  
+  int data[] = '{10,20,30,40,50};
+  
+  initial
+    begin
+      
+      
+      data.rsort();
+      
+      foreach(data[i])
+        $display(" data[%0d] = %0d " , i , data[i]);
+      
+    end
+endmodule
+
+output:
+# Allocation: Simulator allocated 4568 kB (elbread=451 elab2=4109 kernel=7 sdf=0)
+# KERNEL: ASDB file was created in location /home/runner/dataset.asdb
+# KERNEL:  data[0] = 50 
+# KERNEL:  data[1] = 40 
+# KERNEL:  data[2] = 30 
+# KERNEL:  data[3] = 20 
+# KERNEL:  data[4] = 10 
+# KERNEL: Simulation has finished. There are no more test vectors to simulate.
+# VSIM: Simulation has finished.
+
+Shuffle():
+Randomly rearranging the elements of an array is called shuffle.
+
+module top;
+  
+  int data[] = '{10,20,30,40,50};
+  
+  initial
+    begin
+      
+      
+      data.shuffle();
+      
+      foreach(data[i])
+        $display(" data[%0d] = %0d " , i , data[i]);
+      
+    end
+endmodule
+
+output:
+# Allocation: Simulator allocated 4568 kB (elbread=451 elab2=4109 kernel=7 sdf=0)
+# KERNEL: ASDB file was created in location /home/runner/dataset.asdb
+# KERNEL:  data[0] = 50 
+# KERNEL:  data[1] = 20 
+# KERNEL:  data[2] = 10 
+# KERNEL:  data[3] = 30 
+# KERNEL:  data[4] = 40 
+# KERNEL: Simulation has finished. There are no more test vectors to simulate.
+# VSIM: Simulation has finished.
+
+
+ARRAY REDUCTION METHODS:
+
+Sum():
+
+it return the sum of elements of an array .
+
+module top;
+  
+  int data[] = '{10,20,30,40,50};
+  
+  initial
+    begin
+      
+      
+      $display( " %0d " , data.sum());
+      
+    end
+endmodule
+
+output:
+# KERNEL: SLP simulation initialization done - time: 0.0 [s].
+# KERNEL: Kernel process initialization done.
+# Allocation: Simulator allocated 4567 kB (elbread=451 elab2=4109 kernel=7 sdf=0)
+# KERNEL: ASDB file was created in location /home/runner/dataset.asdb
+# KERNEL:  150 
+# KERNEL: Simulation has finished. There are no more test vectors to simulate.
+# VSIM: Simulation has finished.
+
+product():
+
+it returns the product of all elements of an array.
+
+module top;
+  
+  int data[] = '{10,20,30,40,50};
+  
+  initial
+    begin
+      
+      
+      $display( " %0d " , data.product());
+      
+    end
+endmodule
+
+output:
+
+ KERNEL: SLP simulation initialization done - time: 0.0 [s].
+# KERNEL: Kernel process initialization done.
+# Allocation: Simulator allocated 4567 kB (elbread=451 elab2=4109 kernel=7 sdf=0)
+# KERNEL: ASDB file was created in location /home/runner/dataset.asdb
+# KERNEL:  12000000 
+# KERNEL: Simulation has finished. There are no more test vectors to simulate.
+# VSIM: Simulation has finished.
+
+
+MIN():
+It returns the minimum element in the array..
+
+module top;
+  
+  int data[] = '{10,20,30,40,50};
+  
+  initial
+    begin
+      
+      
+      
+      $display(" data  = %0p " , data);
+      $display( " minimum = %0d " , data.min()[0]);
+      
+    end
+endmodule
+
+output:
+
+# Allocation: Simulator allocated 4582 kB (elbread=455 elab2=4118 kernel=8 sdf=0)
+# KERNEL: ASDB file was created in location /home/runner/dataset.asdb
+# KERNEL:  data  = 10 20 30 40 50 
+# KERNEL:  minimum = 10 
+# KERNEL: Simulation has finished. There are no more test vectors to simulate.
+# VSIM: Simulation has finished.
+
+MAX():
+
+it returns the maximum element in the array.
+
+module top;
+  
+  int data[] = '{10,20,30,40,50};
+  
+  initial
+    begin
+      
+      
+      
+      $display(" data  = %0p " , data);
+      $display( " minimum = %0d " , data.max()[0]);
+      
+    end
+endmodule
+
+output:
+
+ KERNEL: Warning: Contact Aldec for available upgrade options - sales@aldec.com.
+# KERNEL: Kernel process initialization done.
+# Allocation: Simulator allocated 4582 kB (elbread=455 elab2=4118 kernel=8 sdf=0)
+# KERNEL: ASDB file was created in location /home/runner/dataset.asdb
+# KERNEL:  data  = 10 20 30 40 50 
+# KERNEL:  minimum = 50 
+# KERNEL: Simulation has finished. There are no more test vectors to simulate.
+# VSIM: Simulation has finished.
+
+
+BIT WISE OR: PERFORMS THE OR OPERATION ON ELEMENTS IN A ARRAY AND RETURNS THE RESULT..
+
+module top;
+  
+  int data[] = '{10,20};
+  
+  initial
+    begin
+      
+      $display(" %0d " , data.or());
+      
+      
+    end
+endmodule
+
+output:KERNEL: ASDB file was created in location /home/runner/dataset.asdb
+# KERNEL:  30 
+# KERNEL: Simulation has finished. There are no more test vectors to simulate.
+# VSIM: Simulation has finished.
+
+BIT WISE AND:  PERFORMS THE AND OPERATION ON ELEMETS IN A ARRAY AND RETURNS THE RESULT..
+
+
+module top;
+  
+  int data[] = '{10,20};
+  
+  initial
+    begin
+      
+      $display(" %0d " , data.and());
+      
+      
+    end
+endmodule
+
+OUTPUT:
+# KERNEL: Kernel process initialization done.
+# Allocation: Simulator allocated 4566 kB (elbread=451 elab2=4108 kernel=7 sdf=0)
+# KERNEL: ASDB file was created in location /home/runner/dataset.asdb
+# KERNEL:  0 
+# KERNEL: Simulation has finished. There are no more test vectors to simulate.
+# VSIM: Simulation has finished.
+
+BITWISE XOR:   PERFORMS THE XOR OPERATION ON ELEMETS IN A ARRAY AND RETURNS THE RESULT..
+
+module top;
+  
+  int data[] = '{10,20};
+  
+  initial
+    begin
+      
+      $display(" %0d " , data.xor());
+      
+      
+    end
+endmodule
+
+output:
+
+# KERNEL: Warning: Contact Aldec for available upgrade options - sales@aldec.com.
+# KERNEL: SLP simulation initialization done - time: 0.0 [s].
+# KERNEL: Kernel process initialization done.
+# Allocation: Simulator allocated 4566 kB (elbread=451 elab2=4108 kernel=7 sdf=0)
+# KERNEL: ASDB file was created in location /home/runner/dataset.asdb
+# KERNEL:  30 
+# KERNEL: Simulation has finished. There are no more test vectors to simulate.
+# VSIM: Simulation has finished.
+
+
+
+
+
+
+
+
+
+
+
